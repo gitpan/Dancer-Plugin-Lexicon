@@ -1,6 +1,6 @@
 package Dancer::Plugin::Lexicon;
 {
-  $Dancer::Plugin::Lexicon::VERSION = '0.01';
+  $Dancer::Plugin::Lexicon::VERSION = '0.02';
 }
 
 use strict;
@@ -9,6 +9,7 @@ use warnings;
 use Package::Stash();
 use Dancer::Plugin;
 use Dancer ':syntax';
+use File::Spec::Functions qw(rel2abs);
 
 use I18N::LangTags qw(implicate_supers panic_languages);
 use I18N::LangTags::Detect;
@@ -90,7 +91,8 @@ sub _localize_ {
 sub _set_language {
 #===================================
     my $settings = _setup_i18n();
-    my $handle = $settings->{namespace}->get_handle( @_, $settings->{default} );
+    my $handle
+        = $settings->{namespace}->get_handle( @_, $settings->{default} );
     var $Handle => $handle;
 }
 
@@ -104,6 +106,8 @@ sub _external_set_language {
 #===================================
 sub _setup_i18n {
 #===================================
+    my $appdir = setting('appdir') or return;
+
     my $settings = plugin_setting();
     return $settings if $settings->{_loaded};
 
@@ -112,9 +116,9 @@ sub _setup_i18n {
 
     my $default = $settings->{default}
         || 'en';
+
     my $base_class = _load_base_class( $settings->{namespace}, $default );
-    my $path = $settings->{path}
-        || path( setting('appdir'), 'languages' );
+    my $path = rel2abs( ( $settings->{path} || 'languages' ), $appdir );
 
     my %langs;
     my $to_load = $settings->{langs};
@@ -265,7 +269,7 @@ Dancer::Plugin::Lexicon - Flexible I18N using Locale::Maketext::Lexicon for Danc
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 
@@ -315,7 +319,7 @@ version 0.01
     my $installed = installed_langs;
     my $number    = keys %$installed;
 
-    print _('I know [quant,_1,langauge,languages]', $number);
+    print _('I know [quant,_1,language,languages]', $number);
     # I know 5 languages
 
     print set_language('fr','de_DE','en');

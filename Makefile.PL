@@ -22,6 +22,7 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "Dancer" => 0,
     "Dancer::Plugin" => 0,
+    "File::Spec::Functions" => 0,
     "I18N::LangTags" => 0,
     "I18N::LangTags::Detect" => 0,
     "I18N::LangTags::List" => 0,
@@ -29,7 +30,7 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.01",
+  "VERSION" => "0.02",
   "test" => {
     "TESTS" => "t/*.t"
   }
