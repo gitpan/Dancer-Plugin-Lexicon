@@ -3,7 +3,7 @@ NAME
     for Dancer apps
 
 VERSION
-    version 0.03
+    version 0.04
 
 SYNOPSIS
   A language specific sub-class
@@ -72,7 +72,7 @@ DESCRIPTION
 
     It allows you to add language sub-classes which can handle grammatical
     differences in that language (such as the Polish example given in the
-    "SNYOPSIS").
+    "SYNOPSIS").
 
     The user's preferred language can be auto-detected from their browser
     settings, and the current language is automatically stored in the user's
@@ -157,7 +157,7 @@ CONFIGURATION
     If you don't want Dancer::Plugin::Lexicon to automatically detect the
     user's preferred language from their browser headers, then set:
 
-        auto_detect: 1
+        auto_detect: 0
 
 FUNCTIONS
   set_language

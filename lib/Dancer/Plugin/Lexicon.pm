@@ -1,6 +1,6 @@
 package Dancer::Plugin::Lexicon;
 {
-  $Dancer::Plugin::Lexicon::VERSION = '0.03';
+  $Dancer::Plugin::Lexicon::VERSION = '0.04';
 }
 
 use strict;
@@ -269,7 +269,7 @@ Dancer::Plugin::Lexicon - Flexible I18N using Locale::Maketext::Lexicon for Danc
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 
@@ -343,7 +343,7 @@ L<xgettext.pl>.
 
 It allows you to add language sub-classes which can handle grammatical
 differences in that language (such as the Polish example given in the
-L</SNYOPSIS>).
+L</SYNOPSIS>).
 
 The user's preferred language can be auto-detected from their browser
 settings, and the current language is automatically stored in the user's
@@ -437,7 +437,7 @@ to change the user's current language.
 If you don't want L<Dancer::Plugin::Lexicon> to automatically detect the
 user's preferred language from their browser headers, then set:
 
-    auto_detect: 1
+    auto_detect: 0
 
 =head1 FUNCTIONS
 
