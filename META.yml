@@ -25,4 +25,4 @@ requires:
 resources:
   bugtracker: https://github.com/clintongormley/Dancer-Plugin-Lexicon/issues
   repository: git://github.com/clintongormley/Dancer-Plugin-Lexicon.git
-version: 0.02
+version: 0.03

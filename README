@@ -3,7 +3,7 @@ NAME
     for Dancer apps
 
 VERSION
-    version 0.02
+    version 0.03
 
 SYNOPSIS
   A language specific sub-class
@@ -43,7 +43,7 @@ SYNOPSIS
         print language;
         # English
 
-        print lang_tag;
+        print language_tag;
         # en
 
         my $installed = installed_langs;
@@ -179,7 +179,7 @@ FUNCTIONS
   language
     The name of the current language as specified in "installed_langs".
 
-  lang_tag
+  language_tag
     The language tag of the current language.
 
   installed_langs

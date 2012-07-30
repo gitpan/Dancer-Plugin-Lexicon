@@ -1,6 +1,6 @@
 package Dancer::Plugin::Lexicon;
 {
-  $Dancer::Plugin::Lexicon::VERSION = '0.02';
+  $Dancer::Plugin::Lexicon::VERSION = '0.03';
 }
 
 use strict;
@@ -269,7 +269,7 @@ Dancer::Plugin::Lexicon - Flexible I18N using Locale::Maketext::Lexicon for Danc
 
 =head1 VERSION
 
-version 0.02
+version 0.03
 
 =head1 SYNOPSIS
 
@@ -313,7 +313,7 @@ version 0.02
     print language;
     # English
 
-    print lang_tag;
+    print language_tag;
     # en
 
     my $installed = installed_langs;
@@ -462,7 +462,7 @@ you can also force with:
 
 The name of the current language as specified in L</installed_langs>.
 
-=head2 lang_tag
+=head2 language_tag
 
 The language tag of the current language.
 
