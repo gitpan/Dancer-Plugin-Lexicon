@@ -1,6 +1,6 @@
 package Dancer::Plugin::Lexicon;
 {
-  $Dancer::Plugin::Lexicon::VERSION = '0.04';
+  $Dancer::Plugin::Lexicon::VERSION = '0.05';
 }
 
 use strict;
@@ -269,7 +269,7 @@ Dancer::Plugin::Lexicon - Flexible I18N using Locale::Maketext::Lexicon for Danc
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 
