@@ -1,8 +1,5 @@
 package Dancer::Plugin::Lexicon;
-{
-  $Dancer::Plugin::Lexicon::VERSION = '0.05';
-}
-
+$Dancer::Plugin::Lexicon::VERSION = '0.06';
 use strict;
 use warnings;
 
@@ -42,18 +39,19 @@ sub import {
 #===================================
 add_hook before => sub {
 #===================================
-    my $settings = _setup_i18n();
-    my $session_name = $settings->{session_name} || 'lang';
+    my $settings         = _setup_i18n();
+    my $sessions_enabled = !!engine('session');
+    my $session_name     = $settings->{session_name} || 'lang';
 
     my $lang = param( $settings->{param_name} || "lang" )
-        || eval { session $session_name};
+        || $sessions_enabled && session $session_name;
 
     my @langs;
     if ($lang) {
         @langs = $lang;
     }
     elsif ( $settings->{auto_detect} ) {
-        @langs = I18N::LangTags::Detect::http_accept_langs(
+        @langs = I18N::LangTags::Detect->http_accept_langs(
             request->accept_language );
         @langs = implicate_supers(@langs);
         push @langs, panic_languages(@langs);
@@ -61,7 +59,8 @@ add_hook before => sub {
 
     $lang = _set_language(@langs)->language_tag;
 
-    eval { session $session_name => $lang };
+    session $session_name => $lang
+        if $sessions_enabled;
 };
 
 #===================================
@@ -259,9 +258,11 @@ sub _load_if_exists {
 
 # ABSTRACT: Flexible I18N using Locale::Maketext::Lexicon for Dancer apps
 
-
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -269,7 +270,7 @@ Dancer::Plugin::Lexicon - Flexible I18N using Locale::Maketext::Lexicon for Danc
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
@@ -531,10 +532,9 @@ Clinton Gormley <drtech@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Clinton Gormley.
+This software is copyright (c) 2014 by Clinton Gormley.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
